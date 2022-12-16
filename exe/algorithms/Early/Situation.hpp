@@ -5,9 +5,9 @@
 namespace exe::algorithms {
     class Situation {
     public:
-        Situation(const exe::grammar::CFRule& rule, size_t index_low_dot_, size_t index_high_dot_, size_t who_i);
-        Situation(const Situation& situation, size_t index_low_dot_, size_t who_i);
-        Situation(const Situation& situation, size_t index_low_dot_, size_t index_high_dot_, size_t who_i);
+        Situation(const exe::grammar::CFRule& rule, size_t index_low_dot_, size_t index_high_dot_/*, size_t who_i*/);
+        Situation(const Situation& situation, size_t index_low_dot_/*, size_t who_i */);
+        Situation(const Situation& situation, size_t index_low_dot_, size_t index_high_dot_/*, size_t who_i*/);
 
         bool operator<(const Situation& situation) const;
         bool operator==(const Situation& situation) const;

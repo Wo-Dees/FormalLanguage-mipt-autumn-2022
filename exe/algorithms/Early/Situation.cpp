@@ -1,14 +1,14 @@
 #include "Situation.hpp"
 
 namespace exe::algorithms {
-    Situation::Situation(const exe::grammar::CFRule& rule, size_t index_low_dot, size_t index_high_dot, size_t who_i) :
-    rule_(rule), index_high_dot_(index_high_dot), index_low_dot_(index_low_dot), who_i_(who_i) {}
+    Situation::Situation(const exe::grammar::CFRule& rule, size_t index_low_dot, size_t index_high_dot /*, size_t who_i*/) :
+    rule_(rule), index_high_dot_(index_high_dot), index_low_dot_(index_low_dot)/*, who_i_(who_i) */{}
 
-    Situation::Situation(const Situation& situation, size_t index_low_dot, size_t who_i) :
-    rule_(situation.rule_), index_high_dot_(situation.index_high_dot_), index_low_dot_(index_low_dot), who_i_(who_i) {}
+    Situation::Situation(const Situation& situation, size_t index_low_dot/*, size_t who_i */) :
+    rule_(situation.rule_), index_high_dot_(situation.index_high_dot_), index_low_dot_(index_low_dot)/*, who_i_(who_i) */{}
 
-    Situation::Situation(const Situation& situation, size_t index_low_dot, size_t index_high_dot, size_t who_i) :
-    rule_(situation.rule_), index_high_dot_(index_high_dot), index_low_dot_(index_low_dot), who_i_(who_i) {}
+    Situation::Situation(const Situation& situation, size_t index_low_dot, size_t index_high_dot/*, size_t who_i*/) :
+    rule_(situation.rule_), index_high_dot_(index_high_dot), index_low_dot_(index_low_dot)/*, who_i_(who_i) */{}
 
     bool Situation::operator<(const Situation& situation) const {
         if (rule_.GetLeftPart() < situation.GetLeftPart()) {
