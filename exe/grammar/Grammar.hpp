@@ -24,22 +24,20 @@ namespace exe::grammar {
         // start non-terminal - is char
         // set of non-terminals -> Rules, which corresponds correct left part
     public:
-        friend exe::algorithms::Situation;
-        friend exe::algorithms::EarleyHelper;
-
         CFGrammar() = default;
         CFGrammar(const std::vector<char>& alphabet);
         CFGrammar(const CFGrammar& grammar);
 
         void SetStartNonTerminal(char c);
-        void SetNonTerminalRules(const std::unordered_map<char, std::vector<exe::grammar::Rule>>& rules);
+        void SetRules(const std::unordered_map<char, std::vector<exe::grammar::CFRule>>& rules);
 
-        void AddNonTerminal(char A, const std::vector<exe::grammar::Rule>& rules);
+        void AddNonTerminal(char A, const std::vector<exe::grammar::CFRule>& rules);
+        void DeleteNonTerminal(char A);
 
         char GetStartNonNeterminal() const;
-        const std::unordered_map<char, std::vector<exe::grammar::Rule>>& GetRules() const;
+        const std::unordered_map<char, std::vector<exe::grammar::CFRule>>& GetRules() const;
     private:
-        std::unordered_map<char, std::vector<exe::grammar::Rule>> rules_;
+        std::unordered_map<char, std::vector<exe::grammar::CFRule>> rules_;
         const std::vector<char> alphabet_{std::vector<char>{'a', 'b', 'c'}};
         char startNonNeterminal_;
     };

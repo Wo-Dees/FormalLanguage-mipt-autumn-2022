@@ -8,18 +8,25 @@ namespace exe::grammar {
     void CFGrammar::SetStartNonTerminal(char c) {
         startNonNeterminal_ = c;
     }
-    void CFGrammar::SetNonTerminalRules(const std::unordered_map<char, std::vector<exe::grammar::Rule>> &rules) {
+    void CFGrammar::SetRules(const std::unordered_map<char, std::vector<exe::grammar::CFRule>> &rules) {
         rules_ = rules;
     }
 
-    void CFGrammar::AddNonTerminal(char A, const std::vector<exe::grammar::Rule> &rules) {
-        rules_[A] = rules;
+    void CFGrammar::AddNonTerminal(char A, const std::vector<exe::grammar::CFRule> &rules) {
+        if (rules_.find(A) == rules_.end()) {
+            rules_[A] = rules;
+            return;
+        }
+        copy(rules.begin(), rules.end(), rules_[A].begin());
+    }
+    void CFGrammar::DeleteNonTerminal(char A) {
+        rules_.erase(A);
     }
 
     char CFGrammar::GetStartNonNeterminal() const {
         return startNonNeterminal_;
     }
-    const std::unordered_map<char, std::vector<exe::grammar::Rule>>& CFGrammar::GetRules() const {
+    const std::unordered_map<char, std::vector<exe::grammar::CFRule>>& CFGrammar::GetRules() const {
         return rules_;
     }
 }
