@@ -19,9 +19,9 @@ namespace exe::algorithms {
         std::set<exe::algorithms::Situation> set_;
         for (auto& situation : set) {
             if (situation.GetNextSym() == '\0') {
-                for (auto& situation_ : D_[situation.GetLowDot()]) {
+                for (auto& situation_ : D_[situation.GetHighDot()]) {
                     if (situation_.GetNextSym() == situation.GetLeftPart()) {
-                        set_.emplace(Situation(situation_, j));
+                        set_.emplace(Situation(situation_, situation_.GetLowDot() + 1));
                     }
                 }
             }
@@ -32,7 +32,7 @@ namespace exe::algorithms {
     std::set<exe::algorithms::Situation> EarleyHelper::Predict(const std::set<exe::algorithms::Situation>& set, size_t j) {
         std::set<exe::algorithms::Situation> set_;
         for (auto& situation : set) {
-            if ((situation.GetNextSym() <= 'Z' and 'A' <= situation.GetNextSym()) or situation.GetNextSym() == '$') {
+            if (situation.GetNextSym() <= 'Z' and 'A' <= situation.GetNextSym()) {
                 for (auto& rule : grammar_.GetRules().find(situation.GetNextSym())->second) {
                     set_.emplace(Situation(rule, 0, j));
                 }
