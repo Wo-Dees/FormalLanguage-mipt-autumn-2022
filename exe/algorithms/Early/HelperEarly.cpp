@@ -2,7 +2,7 @@
 
 namespace exe::algorithms {
 
-    EarleyHelper::EarleyHelper(const std::string& word, const grammar::CFGrammar& grammar,
+    EarleyHelper::EarleyHelper(const std::string& word, const exe::grammar::CFGrammar& grammar,
                  std::vector<std::set<exe::algorithms::Situation>>& D) : word_(word), grammar_(grammar), D_(D) {}
 
     void EarleyHelper::Scan(size_t j) {
@@ -21,7 +21,7 @@ namespace exe::algorithms {
             if (situation.GetNextSym() == '\0') {
                 for (auto& situation_ : D_[situation.GetHighDot()]) {
                     if (situation_.GetNextSym() == situation.GetLeftPart()) {
-                        set_.emplace(Situation(situation_, situation_.GetLowDot() + 1));
+                        set_.emplace(Situation(situation_, situation_.GetLowDot() + 1, j));
                     }
                 }
             }

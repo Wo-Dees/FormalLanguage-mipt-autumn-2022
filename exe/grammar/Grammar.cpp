@@ -2,8 +2,6 @@
 
 namespace exe::grammar {
     CFGrammar::CFGrammar(const std::vector<char> &alphabet) : alphabet_(alphabet) {}
-    CFGrammar::CFGrammar(const CFGrammar &grammar) : rules_(grammar.rules_), alphabet_(grammar.alphabet_),
-                                          startNonNeterminal_(grammar.startNonNeterminal_) {}
 
     void CFGrammar::SetStartNonTerminal(char c) {
         startNonNeterminal_ = c;

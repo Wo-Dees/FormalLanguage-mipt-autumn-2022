@@ -7,6 +7,9 @@ namespace exe::algorithms {
     Situation::Situation(const Situation& situation, size_t index_low_dot) :
     rule_(situation.rule_), index_high_dot_(situation.index_high_dot_), index_low_dot_(index_low_dot) {}
 
+    Situation::Situation(const Situation& situation, size_t index_low_dot, size_t index_high_dot) :
+    rule_(situation.rule_), index_high_dot_(index_high_dot), index_low_dot_(index_high_dot) {}
+
     bool Situation::operator<(const Situation& situation) const {
         if (rule_.GetLeftPart() < situation.GetLeftPart()) {
             return true;

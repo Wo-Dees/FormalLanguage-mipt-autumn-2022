@@ -6,11 +6,12 @@
 
 #include "Situation.hpp"
 #include "../../grammar/Grammar.hpp"
+#include "../../grammar/Rule.hpp"
 
 namespace exe::algorithms {
     class EarleyHelper {
     public:
-        EarleyHelper(const std::string& word, const grammar::CFGrammar& grammar,
+        EarleyHelper(const std::string& word, const exe::grammar::CFGrammar& grammar,
                      std::vector<std::set<exe::algorithms::Situation>>& D);
         void Scan(size_t j);
         void Relax(size_t j);

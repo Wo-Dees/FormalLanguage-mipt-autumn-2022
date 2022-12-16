@@ -1,8 +1,11 @@
-//
-// Created by Леонид Переверзин on 16.12.2022.
-//
+#pragma once
 
-#ifndef EXE_EARLY_HPP
-#define EXE_EARLY_HPP
+#include <string>
 
-#endif //EXE_EARLY_HPP
+#include "HelperEarly.hpp"
+
+namespace exe::algorithms {
+
+    bool Earley(const grammar::CFGrammar& grammar, const std::string& word);
+
+} // namespace exe::algorithms
