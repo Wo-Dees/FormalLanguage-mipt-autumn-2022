@@ -1,18 +1,20 @@
 #include "Rule.hpp"
 
 namespace exe::grammar {
-    Rule::Rule(char leftPart, const std::string &rightPart) : leftPart_(leftPart), rightPart_(rightPart) {}
-    Rule::Rule(const Rule &rule) : leftPart_(rule.leftPart_), rightPart_(rule.rightPart_) {}
+    CFRule::CFRule(char leftPart, const std::string &rightPart) : leftPart_(leftPart), rightPart_(rightPart) {}
+    CFRule::CFRule(char leftPart, char rightPart) : leftPart_(leftPart), rightPart_(1, rightPart) {}
+    CFRule::CFRule(const CFRule &rule) : leftPart_(rule.leftPart_), rightPart_(rule.rightPart_) {}
 
-    const char& Rule::GetLeftPart() const  {
+    const char& CFRule::GetLeftPart() const  {
         return leftPart_;
     }
-    const std::string& Rule::GetRightPart() const {
+    const std::string& CFRule::GetRightPart() const {
         return rightPart_;
     }
 
-    Rule& Rule::operator=(const exe::grammar::Rule &rule) {
+    CFRule& CFRule::operator=(const exe::grammar::CFRule &rule) {
         leftPart_ = rule.leftPart_;
         rightPart_ = rule.rightPart_;
+        return *this;
     }
 } // namespace exe::grammar

@@ -8,6 +8,9 @@ Formal languages on C++:
 - [Regular](exe/regular)
   - RegularExpression
 - [Grammar](exe/grammar)
-  - RegularExpression
+  - Grammar
 - [Algorithms](exe/algorithms)
-  - RegularExpression
+  - Early
+  - CYK
+  - LR(1)
+  - LR(k)
