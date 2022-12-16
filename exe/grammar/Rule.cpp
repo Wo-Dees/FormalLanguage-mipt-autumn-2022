@@ -17,4 +17,8 @@ namespace exe::grammar {
         rightPart_ = rule.rightPart_;
         return *this;
     }
+
+    bool CFRule::operator==(const exe::grammar::CFRule &rule) const {
+        return leftPart_ == rule.leftPart_ and rightPart_ == rule.rightPart_;
+    }
 } // namespace exe::grammar

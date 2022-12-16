@@ -19,6 +19,8 @@ namespace exe::grammar {
         const char &GetLeftPart() const;
         const std::string &GetRightPart() const;
 
+        bool operator==(const CFRule& rule) const;
+
         CFRule& operator=(const CFRule& rule);
     private:
         char leftPart_;
