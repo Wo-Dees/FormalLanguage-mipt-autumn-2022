@@ -1,14 +1,14 @@
 #include "Situation.hpp"
 
 namespace exe::algorithms {
-    Situation::Situation(const exe::grammar::CFRule& rule, size_t index_low_dot, size_t index_high_dot) :
-    rule_(rule), index_high_dot_(index_high_dot), index_low_dot_(index_low_dot) {}
+    Situation::Situation(const exe::grammar::CFRule& rule, size_t index_low_dot, size_t index_high_dot, size_t who_i) :
+    rule_(rule), index_high_dot_(index_high_dot), index_low_dot_(index_low_dot), who_i_(who_i) {}
 
-    Situation::Situation(const Situation& situation, size_t index_low_dot) :
-    rule_(situation.rule_), index_high_dot_(situation.index_high_dot_), index_low_dot_(index_low_dot) {}
+    Situation::Situation(const Situation& situation, size_t index_low_dot, size_t who_i) :
+    rule_(situation.rule_), index_high_dot_(situation.index_high_dot_), index_low_dot_(index_low_dot), who_i_(who_i) {}
 
-    Situation::Situation(const Situation& situation, size_t index_low_dot, size_t index_high_dot) :
-    rule_(situation.rule_), index_high_dot_(index_high_dot), index_low_dot_(index_high_dot) {}
+    Situation::Situation(const Situation& situation, size_t index_low_dot, size_t index_high_dot, size_t who_i) :
+    rule_(situation.rule_), index_high_dot_(index_high_dot), index_low_dot_(index_low_dot), who_i_(who_i) {}
 
     bool Situation::operator<(const Situation& situation) const {
         if (rule_.GetLeftPart() < situation.GetLeftPart()) {
@@ -51,5 +51,11 @@ namespace exe::algorithms {
     }
     char Situation::GetLeftPart() const {
         return rule_.GetLeftPart();
+    }
+    std::string Situation::GetRightPart() const {
+        return rule_.GetRightPart();
+    }
+    size_t  Situation::GetWho() const {
+        return who_i_;
     }
 } // namespace exe::algorithms

@@ -9,7 +9,7 @@ namespace exe::algorithms {
         if (j != 0) {
             for (auto& situation : D_[j-1]) {
                 if (word_[j-1] == situation.GetNextSym()) {
-                    D_[j].insert(Situation(situation, situation.GetLowDot() + 1));
+                    D_[j].insert(Situation(situation, situation.GetLowDot() + 1, 11));
                 }
             }
         }
@@ -21,7 +21,7 @@ namespace exe::algorithms {
             if (situation.GetNextSym() == '\0') {
                 for (auto& situation_ : D_[situation.GetHighDot()]) {
                     if (situation_.GetNextSym() == situation.GetLeftPart()) {
-                        set_.emplace(Situation(situation_, situation_.GetLowDot() + 1, j));
+                        set_.emplace(Situation(situation_, situation_.GetLowDot() + 1, situation_.GetHighDot(), 33));
                     }
                 }
             }
@@ -34,7 +34,7 @@ namespace exe::algorithms {
         for (auto& situation : set) {
             if (situation.GetNextSym() <= 'Z' and 'A' <= situation.GetNextSym()) {
                 for (auto& rule : grammar_.GetRules().find(situation.GetNextSym())->second) {
-                    set_.emplace(Situation(rule, 0, j));
+                    set_.emplace(Situation(rule, 0, j, 55));
                 }
             }
         }
