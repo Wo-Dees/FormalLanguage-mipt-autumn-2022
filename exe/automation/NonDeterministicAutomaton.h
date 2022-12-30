@@ -2,59 +2,53 @@
 
 namespace exe::automaton {
 
-    class DeterministicAutomation;
+class DeterministicAutomation;
 
-    class NonDeterministicAutomaton {
-    public:
+class NonDeterministicAutomaton {
+ public:
+  NonDeterministicAutomaton(size_t n, size_t initial);
 
-        NonDeterministicAutomaton(size_t n, size_t initial);
+  void AddVertex(size_t from, size_t to, const std::string &word);
 
-        void AddVertex(size_t from, size_t to, const std::string &word);
+  void SetDeterministic(size_t state);
 
-        void SetDeterministic(size_t state);
+  void DeleteWordLink();
 
-        void DeleteWordLink();
+  void DeleteELink();
 
-        void DeleteELink();
+  void PrintAutomation();
 
-        void PrintAutomation();
+ private:
+  struct Link {
+    Link(size_t state, const std::string &word) : state_(state), word_(word) {}
 
-    private:
+    size_t state_;
+    std::string word_;
+  };
 
-        struct Link {
-            Link(size_t state, const std::string &word) : state_(state), word_(word) {}
+  struct State {
+    State() : deterministic_(false) {}
 
-            size_t state_;
-            std::string word_;
-        };
+    std::list<Link> linklist_;
+    bool deterministic_;
+  };
 
-        struct State {
-            State() : deterministic_(false) {}
+ private:
+  void SetDeterministicState();
 
-            std::list<Link> linklist_;
-            bool deterministic_;
-        };
+  void HandleState();
 
-    private:
+  void RelaxState(size_t state);
 
-        void SetDeterministicState();
+  void RelaxWordState(size_t state, const Link &link);
 
-        void HandleState();
+ private:
+  friend DeterministicAutomation;
 
-        void RelaxState(size_t state);
+ private:
+  std::deque<State> states_;
+  std::list<size_t> deterministic_;
+  size_t initial_;
+};
 
-        void RelaxWordState(size_t state, const Link &link);
-
-    private:
-
-        friend DeterministicAutomation;
-
-    private:
-
-        std::deque<State> states_;
-        std::list<size_t> deterministic_;
-        size_t initial_;
-
-    };
-
-} // exe::automaton
+}  // namespace exe::automaton

@@ -1,6 +1,3 @@
 #include "RegularExpression.h"
 
-namespace exe::regular {
-
-
-} // exe::regular
+namespace exe::regular {}  // namespace exe::regular
